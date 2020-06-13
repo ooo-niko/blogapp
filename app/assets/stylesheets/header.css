@@ -6,6 +6,18 @@
   font-weight: bold;
 }
 
+.header_logos {
+  min-width: 0;
+  display: flex;
+}
+
+.header_logos img {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  margin: 12px 8px 0;
+}
+
 .header_pageTitle {
   color: white;
   line-height: 40px;
