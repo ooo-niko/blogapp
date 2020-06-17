@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy] 
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @articles = Article.all
@@ -27,12 +27,6 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.find(params[:id])
   end
 
-  def destroy
-    article = current_user.articles.find(params[:id])
-    article.destroy!
-    redirect_to root_path, notice: '削除に成功しました'
-  end
-
   def update
     @article = current_user.articles.find(params[:id])
     if @article.update(article_params)
@@ -41,6 +35,12 @@ class ArticlesController < ApplicationController
       flash.now[:error] = '更新できませんでした'
       render :edit
     end
+  end
+
+  def destroy
+    article = current_user.articles.find(params[:id])
+    article.destroy!
+    redirect_to root_path, notice: '削除に成功しました'
   end
 
   private
